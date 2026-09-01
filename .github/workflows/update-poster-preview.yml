@@ -1,0 +1,51 @@
+name: Update poster preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - poster.pdf
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install PDF and WebP tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils webp
+
+      - name: Render first page of poster.pdf
+        run: |
+          pdftoppm \
+            -f 1 \
+            -singlefile \
+            -scale-to 2048 \
+            -png \
+            poster.pdf \
+            poster-preview
+
+          cwebp -quiet -q 84 poster-preview.png -o poster-preview.webp
+          rm poster-preview.png
+
+      - name: Commit updated preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add poster-preview.webp
+
+          if git diff --cached --quiet; then
+            echo "Poster preview is already up to date."
+            exit 0
+          fi
+
+          git commit -m "Update poster preview"
+          git push
