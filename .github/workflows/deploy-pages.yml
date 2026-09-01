@@ -1,0 +1,57 @@
+name: Deploy paper page
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install PDF and WebP tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils webp
+
+      - name: Generate poster preview from poster.pdf
+        run: |
+          test -f poster.pdf || { echo "poster.pdf not found in repository root"; exit 1; }
+          pdftoppm \
+            -f 1 \
+            -singlefile \
+            -scale-to 2048 \
+            -png \
+            poster.pdf \
+            poster-preview
+          cwebp -quiet -q 84 poster-preview.png -o poster-preview.webp
+          rm poster-preview.png
+          ls -lh poster.pdf poster-preview.webp
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
