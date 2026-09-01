@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DASC 2026 paper page for Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning." />
+  <meta name="theme-color" content="#075985" />
+  <title>Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning · DASC 2026</title>
+  <style>
+    :root{
+      --blue:#075985;
+      --blue2:#0c6f97;
+      --ink:#14212b;
+      --muted:#5f6f7b;
+      --line:#d7e4ea;
+      --soft:#eef7fa;
+      --paper:#ffffff;
+      --shadow:0 14px 34px rgba(10,52,72,.11);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:#f8fbfc;
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .hero{
+      color:#fff;
+      background:
+        radial-gradient(circle at 85% 20%,rgba(255,255,255,.14),transparent 24rem),
+        linear-gradient(135deg,#064d72 0%,#075985 48%,#0a7595 100%);
+      padding:56px 22px 48px;
+      border-bottom:1px solid rgba(255,255,255,.16);
+    }
+    .wrap{width:min(1120px,calc(100% - 36px));margin:0 auto}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border:1px solid rgba(255,255,255,.34);
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      font-size:.83rem;
+      font-weight:750;
+      letter-spacing:.02em;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size:clamp(2rem,4.6vw,4.25rem);
+      line-height:1.02;
+      max-width:1000px;
+      letter-spacing:-.045em;
+      margin:0 0 18px;
+    }
+    .authors{font-size:1.08rem;font-weight:700;margin:0 0 4px}
+    .affil{color:rgba(255,255,255,.8);margin:0 0 28px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 16px;
+      border-radius:11px;
+      text-decoration:none;
+      font-weight:760;
+      border:1px solid rgba(255,255,255,.32);
+      background:#fff;
+      color:#075985;
+      box-shadow:0 4px 16px rgba(0,0,0,.08);
+    }
+    .btn.secondary{background:transparent;color:#fff;box-shadow:none}
+    .btn.disabled{opacity:.68;cursor:default;background:rgba(255,255,255,.1);color:#fff;box-shadow:none}
+    main{padding:30px 0 72px}
+    .section{margin-top:26px}
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:clamp(22px,3vw,34px);
+      box-shadow:var(--shadow);
+    }
+    h2{font-size:1.55rem;letter-spacing:-.02em;margin:0 0 14px;color:var(--blue)}
+    h3{margin:0 0 8px;font-size:1.04rem;color:var(--blue)}
+    p{margin:0 0 14px}
+    p:last-child{margin-bottom:0}
+    .lead{font-size:1.08rem;color:#324653;max-width:900px}
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+    .metric{
+      background:linear-gradient(180deg,#f7fcfd 0%,#eef7fa 100%);
+      border:1px solid #cfe2e9;
+      border-radius:15px;
+      padding:17px;
+      min-height:116px;
+    }
+    .metric strong{display:block;color:var(--blue);font-size:1.8rem;line-height:1.05;margin-bottom:7px}
+    .metric span{font-size:.9rem;color:#4b6470}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .takeaway{
+      border-left:5px solid var(--blue2);
+      background:var(--soft);
+      padding:18px 20px;
+      border-radius:0 13px 13px 0;
+      font-size:1.06rem;
+      font-weight:650;
+    }
+    .small{font-size:.9rem;color:var(--muted)}
+    .poster{
+      width:100%;
+      display:block;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:white;
+    }
+    .poster-link{display:block;text-decoration:none}
+    .paper-status{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      background:#f8fbfc;
+      border:1px solid var(--line);
+      border-radius:15px;
+      padding:18px;
+    }
+    .dot{width:11px;height:11px;border-radius:50%;background:#d49a14;margin-top:7px;flex:0 0 auto}
+    code{
+      background:#eef3f5;
+      padding:2px 5px;
+      border-radius:5px;
+      font-size:.92em;
+    }
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 0 40px;
+      color:#60727e;
+      font-size:.88rem;
+    }
+    @media (max-width:820px){
+      .metrics{grid-template-columns:1fr 1fr}
+      .grid2{grid-template-columns:1fr}
+      .hero{padding-top:38px}
+    }
+    @media (max-width:520px){
+      .wrap{width:min(100% - 24px,1120px)}
+      .metrics{grid-template-columns:1fr}
+      .btn{width:100%}
+      .actions{gap:8px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="badge">45th DASC · Best Student Paper Award Finalist · Paper ID 276</div>
+      <h1>Stochastic Strategic Demand–Capacity Balancing Using Model-Free Reinforcement Learning</h1>
+      <p class="authors">Lucas Orbolato Carvalho · Mayara Condé Rocha Murça</p>
+      <p class="affil">Aeronautics Institute of Technology (ITA) · São José dos Campos, Brazil</p>
+      <div class="actions">
+        <a class="btn" href="poster.pdf">View poster</a>
+        <a class="btn secondary" href="slides.pdf">View presentation</a>
+        <span class="btn disabled" aria-disabled="true">Proceedings paper forthcoming</span>
+        <a class="btn secondary" href="mailto:orbolatoloc@fab.mil.br">Contact author</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="section card">
+        <h2>At a glance</h2>
+        <p class="takeaway">A model-free reinforcement learning framework allocates strategic ground delays under weather uncertainty while accounting for the downstream tactical capacity consequences.</p>
+        <div class="metrics">
+          <div class="metric"><strong>13.3%</strong><span>aggregate mean-cost reduction in conventional ATM at SBGR</span></div>
+          <div class="metric"><strong>64.7%</strong><span>aggregate mean-cost reduction in the UAM case study</span></div>
+          <div class="metric"><strong>30 + 30</strong><span>held-out test days across the two case studies</span></div>
+          <div class="metric"><strong>1.1% / 4.4%</strong><span>of flights delayed in conventional ATM / UAM</span></div>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <article class="card">
+          <h2>Abstract</h2>
+          <p class="lead">Strategic demand-capacity balancing is essential for mitigating inefficiencies in air traffic operations, particularly under dynamic and uncertain weather conditions. This work proposes a stochastic demand-capacity balancing approach based on reinforcement learning, in which an agent allocates ground delays to individual flights using traffic demand and weather forecasts. The method is evaluated using real-world data for São Paulo/Guarulhos International Airport (SBGR), with performance assessed against observed weather conditions. An additional case study illustrates the applicability of the approach to Urban Air Mobility (UAM) operations, showing that the same algorithm can support traffic flow management in both conventional and emerging air traffic environments. The results highlight the potential of reinforcement learning to support adaptive, uncertainty-aware demand-capacity balancing in future Air Traffic Management (ATM) systems.</p>
+        </article>
+        <article class="card">
+          <h2>Method in brief</h2>
+          <h3>Strategic layer</h3>
+          <p>Maskable PPO assigns per-flight ground delays in 15-minute increments, capped at one hour and by the remaining planning horizon.</p>
+          <h3>Weather uncertainty</h3>
+          <p>Training combines empirical weather dynamics with forecast-error information derived from TAF and METAR records.</p>
+          <h3>Tactical layer</h3>
+          <p>Reallocated demand is evaluated against runway or vertiport capacity constraints, allowing the strategic policy to internalize tactical congestion effects.</p>
+          <h3>Evaluation</h3>
+          <p>Conventional ATM is evaluated at SBGR using real-world traffic and weather data; the same learning framework is also examined in a UAM case study for the São Paulo Metropolitan Region.</p>
+        </article>
+      </section>
+
+      <section class="section card">
+        <h2>Results</h2>
+        <div class="grid2">
+          <div>
+            <h3>Conventional ATM at SBGR</h3>
+            <p>Across 30 held-out days, the policy reduced aggregate mean tactical cost by <strong>13.3%</strong>, improved 12 of 30 days, and achieved a maximum daily reduction of <strong>77.2%</strong>. Only <strong>1.1%</strong> of flights received strategic ground delay.</p>
+          </div>
+          <div>
+            <h3>UAM case study</h3>
+            <p>Across 30 held-out days, the policy reduced aggregate mean tactical cost by <strong>64.7%</strong>, with a <strong>43.9%</strong> mean daily percentage reduction and improvements on 23 of 30 days. Strategic delay was applied to <strong>4.4%</strong> of flights.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card">
+        <h2>Poster</h2>
+        <p class="small" style="margin-bottom:16px">Click the preview to open the full-resolution A0 poster.</p>
+        <a class="poster-link" href="poster.pdf"><img class="poster" src="poster-preview.webp" alt="DASC 2026 poster preview for the paper" loading="lazy" /></a>
+      </section>
+
+      <section class="section card">
+        <h2>Full paper</h2>
+        <div class="paper-status">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <p><strong>The conference proceedings version is being finalized.</strong></p>
+            <p class="small">This page will be updated with the official proceedings / IEEE Xplore link when it becomes available. Until then, the poster and presentation above summarize the work presented at DASC 2026.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card">
+        <h2>Conference</h2>
+        <p><strong>45th Digital Avionics Systems Conference (DASC)</strong><br />Orlando, Florida · September 13–17, 2026 · Paper ID 276</p>
+        <p class="small">Best Student Paper Award finalist.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Authors:</strong> Lucas Orbolato Carvalho and Mayara Condé Rocha Murça · Aeronautics Institute of Technology (ITA).</p>
+      <p><strong>Acknowledgements:</strong> Brazilian Civil Aviation Secretariat (SAC), Decentralized Execution Agreement (TED) No. 11525720240005-003882/2024, and the Brazilian Air Force (FAB).</p>
+      <p>This static page contains no analytics, cookies, or third-party scripts.</p>
+    </div>
+  </footer>
+</body>
+</html>
