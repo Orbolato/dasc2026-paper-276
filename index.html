@@ -126,6 +126,29 @@
       font-weight:650;
     }
     .small{font-size:.9rem;color:var(--muted)}
+
+    .related-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    .related-paper{
+      display:block;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:15px;
+      background:#f8fbfc;
+      text-decoration:none;
+      transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+    }
+    .related-paper:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px rgba(10,52,72,.09);
+      border-color:#b7d3de;
+    }
+    .related-paper strong{display:block;color:var(--blue);margin-bottom:7px;line-height:1.35}
+    .related-paper span{display:block;color:var(--muted);font-size:.9rem}
     .poster{
       width:100%;
       display:block;
@@ -159,6 +182,7 @@
     @media (max-width:820px){
       .metrics{grid-template-columns:1fr 1fr}
       .grid2{grid-template-columns:1fr}
+      .related-list{grid-template-columns:1fr}
       .hero{padding-top:38px}
     }
     @media (max-width:520px){
@@ -208,6 +232,8 @@
           <h2>Method in brief</h2>
           <h3>Strategic layer</h3>
           <p>Maskable PPO assigns per-flight ground delays in 15-minute increments, capped at one hour and by the remaining planning horizon.</p>
+          <h3>MDP formulation</h3>
+          <p>The state captures the previous operational configuration, traffic queues, weather category and wind state; the action is a per-flight ground delay, and the reward links strategic delay decisions to their downstream tactical congestion consequences.</p>
           <h3>Weather uncertainty</h3>
           <p>Training combines empirical weather dynamics with forecast-error information derived from TAF and METAR records.</p>
           <h3>Tactical layer</h3>
@@ -228,6 +254,21 @@
             <h3>UAM case study</h3>
             <p>Across 30 test days, the policy reduced aggregate mean tactical cost by <strong>64.7%</strong>, with a <strong>43.9%</strong> mean daily percentage reduction and improvements on 23 of 30 days. Strategic delay was applied to <strong>4.4%</strong> of flights. The synthetic UAM baseline was deliberately not pre-optimized against vertiport capacity, leaving more headroom than an operationally planned schedule.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="section card">
+        <h2>Related work underlying this study</h2>
+        <p class="small">The present DASC study builds on our previous work in tactical runway-capacity management and UAM network planning.</p>
+        <div class="related-list">
+          <a class="related-paper" href="https://doi.org/10.1016/j.tra.2025.104620" target="_blank" rel="noopener noreferrer">
+            <strong>A stochastic model-free reinforcement learning framework for optimizing runway capacity management under uncertainty</strong>
+            <span>Transportation Research Part A: Policy and Practice · 2025 · DOI 10.1016/j.tra.2025.104620</span>
+          </a>
+          <a class="related-paper" href="https://doi.org/10.1016/j.cstp.2026.101848" target="_blank" rel="noopener noreferrer">
+            <strong>Data-driven framework for urban air mobility planning: Integrating socioeconomic and operational factors for optimal network design in São Paulo, Brazil</strong>
+            <span>Case Studies on Transport Policy · 2026 · DOI 10.1016/j.cstp.2026.101848</span>
+          </a>
         </div>
       </section>
 
