@@ -87,6 +87,31 @@
     }
     .btn.secondary{background:transparent;color:#fff;box-shadow:none}
     .btn.disabled{opacity:.68;cursor:default;background:rgba(255,255,255,.1);color:#fff;box-shadow:none}
+
+    .hero .wrap{position:relative}
+    .hero-logos{
+      position:absolute;
+      top:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:7px 9px;
+      border-radius:12px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(4px);
+    }
+    .hero-logos img{
+      display:block;
+      width:auto;
+      object-fit:contain;
+      filter:drop-shadow(0 1px 1px rgba(0,0,0,.12));
+    }
+    .hero-logos .dasc{height:34px}
+    .hero-logos .ita{height:36px}
+    .hero-logos .labgeta{height:31px}
+
     main{padding:30px 0 72px}
     .section{margin-top:26px}
     .card{
@@ -184,6 +209,10 @@
       .grid2{grid-template-columns:1fr}
       .related-list{grid-template-columns:1fr}
       .hero{padding-top:38px}
+      .hero-logos{position:static;width:max-content;max-width:100%;margin:0 0 16px auto;gap:8px;padding:6px 8px}
+      .hero-logos .dasc{height:28px}
+      .hero-logos .ita{height:30px}
+      .hero-logos .labgeta{height:26px}
     }
     @media (max-width:520px){
       .wrap{width:min(100% - 24px,1120px)}
@@ -196,6 +225,11 @@
 <body>
   <header class="hero">
     <div class="wrap">
+      <div class="hero-logos" aria-label="Conference and institutional logos">
+        <img class="dasc" src="assets/dasc-logo.png" alt="DASC conference logo" />
+        <img class="ita" src="assets/ita-logo.png" alt="Aeronautics Institute of Technology logo" />
+        <img class="labgeta" src="assets/labgeta-logo.png" alt="LABGETA Air Traffic Management Laboratory logo" />
+      </div>
       <div class="badge">45th DASC · Best Student Paper Award Finalist · Paper ID 276</div>
       <h1>Stochastic Strategic Demand–Capacity Balancing Using Model-Free Reinforcement Learning</h1>
       <p class="authors">Lucas Orbolato Carvalho · Mayara Condé Rocha Murça</p>
@@ -207,6 +241,7 @@
         <span class="btn disabled" aria-disabled="true">Proceedings paper forthcoming</span>
         <a class="btn secondary" href="mailto:orbolatoloc@fab.mil.br">Contact author</a>
       </div>
+
     </div>
   </header>
 
