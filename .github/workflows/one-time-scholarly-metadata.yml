@@ -49,3 +49,4 @@ jobs:
           git add index.html
           git commit -m "Add scholarly metadata to DASC paper page"
           git push
+# trigger after workflow registration
