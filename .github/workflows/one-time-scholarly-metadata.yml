@@ -17,30 +17,30 @@ jobs:
           text=p.read_text(encoding='utf-8')
           marker='  <title>Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning · DASC 2026</title>\n'
           insert='''  <link rel="canonical" href="https://orbolato.github.io/dasc2026-paper-276/" />
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
-  <meta name="citation_title" content="Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning" />
-  <meta name="citation_author" content="Lucas Orbolato Carvalho" />
-  <meta name="citation_author" content="Mayara Condé Rocha Murça" />
-  <meta name="citation_publication_date" content="2026/09" />
-  <meta name="citation_conference_title" content="45th Digital Avionics Systems Conference (DASC)" />
-  <meta name="citation_language" content="en" />
-  <meta name="citation_abstract_html_url" content="https://orbolato.github.io/dasc2026-paper-276/" />
-  <meta name="citation_pdf_url" content="https://orbolato.github.io/dasc2026-paper-276/paper.pdf" />
-  <meta name="DC.Title" content="Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning" />
-  <meta name="DC.Creator" content="Lucas Orbolato Carvalho" />
-  <meta name="DC.Creator" content="Mayara Condé Rocha Murça" />
-  <meta name="DC.Date" content="2026" />
-  <meta name="DC.Type" content="Text.ConferencePaper" />
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning","datePublished":"2026-09","inLanguage":"en","isPartOf":{"@type":"PublicationEvent","name":"45th Digital Avionics Systems Conference (DASC)","location":"Orlando, Florida"},"url":"https://orbolato.github.io/dasc2026-paper-276/","encoding":{"@type":"MediaObject","contentUrl":"https://orbolato.github.io/dasc2026-paper-276/paper.pdf","encodingFormat":"application/pdf"},"author":[{"@type":"Person","name":"Lucas Orbolato Carvalho","url":"https://orbolato.github.io/","sameAs":["https://orcid.org/0000-0002-8402-5832","https://scholar.google.com/citations?user=UQdgiPMAAAAJ&hl=en"]},{"@type":"Person","name":"Mayara Condé Rocha Murça"}],"keywords":["demand-capacity balancing","reinforcement learning","ground delay","air traffic flow management","urban air mobility"]}
-  </script>
-'''
+            <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+            <meta name="citation_title" content="Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning" />
+            <meta name="citation_author" content="Lucas Orbolato Carvalho" />
+            <meta name="citation_author" content="Mayara Condé Rocha Murça" />
+            <meta name="citation_publication_date" content="2026/09" />
+            <meta name="citation_conference_title" content="45th Digital Avionics Systems Conference (DASC)" />
+            <meta name="citation_language" content="en" />
+            <meta name="citation_abstract_html_url" content="https://orbolato.github.io/dasc2026-paper-276/" />
+            <meta name="citation_pdf_url" content="https://orbolato.github.io/dasc2026-paper-276/paper.pdf" />
+            <meta name="DC.Title" content="Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning" />
+            <meta name="DC.Creator" content="Lucas Orbolato Carvalho" />
+            <meta name="DC.Creator" content="Mayara Condé Rocha Murça" />
+            <meta name="DC.Date" content="2026" />
+            <meta name="DC.Type" content="Text.ConferencePaper" />
+            <script type="application/ld+json">
+            {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Stochastic Strategic Demand-Capacity Balancing Using Model-Free Reinforcement Learning","datePublished":"2026-09","inLanguage":"en","isPartOf":{"@type":"PublicationEvent","name":"45th Digital Avionics Systems Conference (DASC)","location":"Orlando, Florida"},"url":"https://orbolato.github.io/dasc2026-paper-276/","encoding":{"@type":"MediaObject","contentUrl":"https://orbolato.github.io/dasc2026-paper-276/paper.pdf","encodingFormat":"application/pdf"},"author":[{"@type":"Person","name":"Lucas Orbolato Carvalho","url":"https://orbolato.github.io/","sameAs":["https://orcid.org/0000-0002-8402-5832","https://scholar.google.com/citations?user=UQdgiPMAAAAJ&hl=en"]},{"@type":"Person","name":"Mayara Condé Rocha Murça"}],"keywords":["demand-capacity balancing","reinforcement learning","ground delay","air traffic flow management","urban air mobility"]}
+            </script>
+            '''
+          insert='\n'.join(line[12:] if line.startswith('            ') else line for line in insert.splitlines()) + '\n'
           if 'name="citation_title"' in text:
               raise SystemExit('Scholarly metadata already present')
           if marker not in text:
               raise SystemExit('Title marker not found')
-          text=text.replace(marker,marker+insert,1)
-          p.write_text(text,encoding='utf-8')
+          p.write_text(text.replace(marker, marker+insert, 1), encoding='utf-8')
           PY
       - name: Commit
         run: |
@@ -49,4 +49,3 @@ jobs:
           git add index.html
           git commit -m "Add scholarly metadata to DASC paper page"
           git push
-# trigger after workflow registration
